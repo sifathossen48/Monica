@@ -1,0 +1,185 @@
+{% extends 'bash.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <!-- page wrap
+    ================================================== -->
+    <div id="page" class="s-pagewrap">
+
+
+        <!-- # site header 
+        ================================================== -->
+        {% include 'header.html' %}
+        <!-- end s-header -->
+
+
+        <!-- # site main content
+        ================================================== -->
+        <section id="content" class="s-content">
+
+               <section class="s-pageheader pageheader">
+                    <div class="row">
+                        <div class="column xl-12">
+                            <h1 class="page-title">
+                                <span class="page-title__small-type text-pretitle">{{websetting.about_pre_title}}</span>
+                                Hi, I'm {{websetting.site_name}}
+                            </h1>
+                            
+                        </div>
+                    </div>
+               </section> <!-- end pageheader --> 
+
+               <section class="s-pagecontent pagecontent">
+
+                    <div class="row pageintro">
+                        <div class="column xl-6 lg-12">
+                            <h2 class="text-display-title">{{websetting.about_page_content_title}}</h2>
+                        </div>
+                        <div class="column xl-6 lg-12 u-flexitem-x-right">
+                            <p class="lead">
+                            {{websetting.about_page_content_desc}}
+                            </p>
+                        </div>                       
+                    </div> <!-- end pageintro -->   
+                    
+                    <div class="row pagemedia">
+                        <d class="column xl-12">
+                            <figure class="page-media">                                
+                                <img style="width:2200px" src="{{websetting.owner_image.url}}"
+                                     srcset="{{websetting.owner_image.url}} 2400w,
+                                             {{websetting.owner_image.url}} 1200w,
+                                             {{websetting.owner_image.url}} 600w" sizes="(max-width: 2400px) 100vw, 2400px" alt="">
+                            </figure>
+                        </d>
+                    </div> <!-- end pagemedia -->
+
+                    <div class="row width-narrower pagemain">
+                        <div class="column xl-12"> 
+
+                            <h2>{{websetting.about_page_main_content_title}}</h2>
+                            <p>
+                           {{websetting.about_page_main_content_desc}}
+                            </p>
+
+                            <h2 class="u-add-bottom">{{websetting.about_page_value_title}}</h2>
+
+                            <div class="grid-list-items list-items">
+                                {% for value in valuesItem %}
+                                <div class="grid-list-items__item list-items__item u-remove-bottom">
+                                    <div class="list-items__item-header">
+                                        <h6 class="list-items__item-small-title">{{value.title}}</h6>
+                                    </div>
+                                    <p>
+                                    {{value.desc}}
+                                    </p>
+                                </div>
+                                {% endfor %}
+                            </div> <!--grid-list-items -->
+
+                            <h2>{{websetting.about_page_together_work_title}}</h2>
+                            <p>
+                            {{websetting.about_page_together_work_desc | safe}}
+                            </p>
+
+
+
+                            <h2>{{websetting.more_abouts_owner_title}}</h2>
+                            <p >
+                               {{websetting.more_abouts_owner_desc}}
+                            </p>
+
+                        </div> <!-- end grid-block-->
+                    </div> <!-- end pagemain -->
+
+               </section> <!-- pagecontent -->
+
+               <section class="s-testimonials">
+
+                    <div class="s-testimonials__header row row-x-center text-center">
+                        <div class="column xl-8 lg-12">
+
+                            <p class="text-pretitle">
+                            {{websetting.testimonials_pre_title}}
+                            </p>
+                            <h3>
+                            {{websetting.testimonials_title}}
+                            </h3>
+
+                        </div>
+                    </div> <!--end s-testimonials__header -->
+
+                    <div class="row s-testimonials__content">
+                        <div class="column xl-12 testimonials">
+
+                            <div class="swiper-container testimonials__slider page-slider">
+
+                                <div class="swiper-wrapper">
+                                    {% for t in testimonial %}
+                                    <div class="testimonials__slide swiper-slide">
+                                        <p>
+                                        {{t.quote}}
+                                        </p>
+                                        <div class="testimonials__author">
+                                            <img src="{{t.author_image.url}}" alt="Author image" class="testimonials__avatar">
+                                            <cite class="testimonials__cite">
+                                                <strong>{{t.author_name}}</strong>
+                                                <span>{{t.author_title}}</span>
+                                            </cite>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div> <!-- end swiper-wrapper -->
+
+                                <div class="swiper-pagination"></div>
+
+                            </div> <!--end testimonials__slider -->
+
+                        </div> <!-- testimonials -->
+                    </div> <!--end s-testimonials__content -->
+
+               </section> <!-- end s-testimonials -->
+
+        </section> <!-- s-content-->
+
+        <!-- # cta
+        ================================================== -->
+       <section id="cta" class="s-cta">
+
+            <div class="row row-x-center text-center">
+                <div class="column xl-8 lg-12">
+
+                    <div class="s-cta__content">
+                        <h2 class="text-display-title">
+                        {{websetting.cta_title}}
+                        </h2>
+                        <p class="lead">
+                         {{websetting.short_cta_desc}}
+                        </p>
+                        <a href="contact.html" class="btn btn--primary"> {{websetting.cta_button}}</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </section> <!-- end s-cta -->
+
+
+        <!-- # footer 
+        ================================================== -->
+       {% include 'footer.html' %}
+        <!-- end s-footer -->
+
+    </div> <!-- end page-wrap -->
+
+{% endblock %}
