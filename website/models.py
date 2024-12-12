@@ -101,11 +101,20 @@ class Article(models.Model):
     image1 = models.ImageField(upload_to='article/')
     image2 = models.ImageField(upload_to='article/')
     desc = RichTextField()
+    desc2 = RichTextField(blank=True,null=True)
+    desc3 = RichTextField(blank=True,null=True)
+    blockquote_title = models.CharField(max_length=20, null=True, blank=True)
+    blockquote_desc = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now=True)
 
     @property
     def short_desc(self):
         return self.desc[:200]
+    def next_blog(self):
+        return Article.objects.filter(id__gt=self.id).order_by('id').first()
+
+    def prev_blog(self):
+        return Article.objects.filter(id__lt=self.id).order_by('-id').first()
 
     def __str__(self):
         return self.title

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
+from django.core.paginator import Paginator
 from website.models import WebsiteSetting, Expertise, Clients, Testimonial, Article, ValuesItem, ServiceItem
 
 
@@ -50,16 +51,28 @@ class BlogView(TemplateView):
     template_name = 'blog.html'
 
     def get_context_data(self, **kwargs):
+        articles =  Article.objects.order_by('-timestamp')
+        paginator = Paginator(articles, 9)
+        page_number = self.request.GET.get('page')
         context = super().get_context_data(**kwargs)
         context['websetting'] = WebsiteSetting.objects.last()
-        context['articles'] = Article.objects.order_by('-timestamp')
+        context['articles'] = paginator.get_page(page_number)
         return context
+    
 
 class BlogDetailView(View):
     def get(self, request, article_id):
         article = Article.objects.get(id=article_id)
+        next_blog = article.next_blog()
+        prev_blog = article.prev_blog()
+        similar_articles = Article.objects.filter(
+        category=article.category
+        ).exclude(id=article.id)[:3]
         context = {
             'article': article,
+            'next_blog': next_blog,
+            'prev_blog': prev_blog,
+            'similar_articles': similar_articles,
             'websetting': WebsiteSetting.objects.last()
         }
         return render(request, 'blog_details.html', context=context)

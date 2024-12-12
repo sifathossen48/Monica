@@ -118,7 +118,9 @@
                                         <h6>Phone</h6>
                                         <ul class="contact-list">
                                             <li><a href="tel:{{websetting.phone}}">{{websetting.phone}}</a></li>
+                                            {% if websetting.alt_phone %}
                                             <li><a href="tel:{{websetting.alt_phone}}">{{websetting.alt_phone}}</a></li>
+                                            {% endif %}
                                         </ul>
                                     </div>
 
