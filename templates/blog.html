@@ -103,25 +103,8 @@
 
         <!-- # cta
         ================================================== -->
-       <section id="cta" class="s-cta">
-
-            <div class="row row-x-center text-center">
-                <div class="column xl-8 lg-12">
-
-                    <div class="s-cta__content">
-                        <h2 class="text-display-title">
-                        {{websetting.cta_title}}
-                        </h2>
-                        <p class="lead">
-                         {{websetting.short_cta_desc}}
-                        </p>
-                        <a href="contact.html" class="btn btn--primary"> {{websetting.cta_button}}</a>
-                    </div>
-
-                </div>
-            </div>
-
-        </section>  <!-- end s-cta -->
+        {% include 'cta.html' %}
+          <!-- end s-cta -->
 
 
         <!-- # footer 
