@@ -1,4 +1,5 @@
 from ckeditor.fields import RichTextField
+
 from django.db import models
 
 # Create your models here.
@@ -106,7 +107,8 @@ class Article(models.Model):
     blockquote_title = models.CharField(max_length=20, null=True, blank=True)
     blockquote_desc = models.TextField(null=True, blank=True)
     timestamp = models.DateTimeField(auto_now=True)
-
+    
+    
     @property
     def short_desc(self):
         return self.desc[:200]
