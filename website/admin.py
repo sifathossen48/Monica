@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from website.models import WebsiteSetting, Expertise, Clients, Testimonial, ArticleCategory, Article, ValuesItem, \
+from website.models import NewsletterSubscription, WebsiteSetting, Expertise, Clients, Testimonial, ArticleCategory, Article, ValuesItem, \
     ServiceItem, ServiceList
 
 # Register your models here.
@@ -13,3 +13,4 @@ admin.site.register(Article)
 admin.site.register(ValuesItem)
 admin.site.register(ServiceItem)
 admin.site.register(ServiceList)
+admin.site.register(NewsletterSubscription)

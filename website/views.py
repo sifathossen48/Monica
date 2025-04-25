@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
+from django.contrib import messages
+from website.forms import NewsletterForm
 from website.models import WebsiteSetting, Expertise, Clients, Testimonial, Article, ValuesItem, ServiceItem
 
 
@@ -76,3 +78,13 @@ class BlogDetailView(View):
             'websetting': WebsiteSetting.objects.last()
         }
         return render(request, 'blog_details.html', context=context)
+
+def newsletter_subscribe(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully subscribed!")
+        else:
+            messages.error(request, "Invalid email or already subscribed.")
+    return redirect(request.META.get('HTTP_REFERER', '/'))
